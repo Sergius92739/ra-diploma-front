@@ -5,8 +5,6 @@ export function CatalogItem(): JSX.Element {
   const {id} = useParams();
   console.log('id: ', id);
 
-  
-
   return (
     <section className="catalog-item">
       <h2 className="text-center">Босоножки 'MYER'</h2>
