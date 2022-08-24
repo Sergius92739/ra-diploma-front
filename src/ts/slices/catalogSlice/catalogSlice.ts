@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, } from '@reduxjs/toolkit';
 import { ICatalogState } from './interfaces';
 import { ICardItem } from '../topSalesSlice/interfaces';
-import { fetchCatalogItems, fetchMoreItems, fetchSearchCatalog } from '../asyncThunkCreator'
+import { fetchCatalogItems, fetchMoreItems } from '../asyncThunkCreator'
 import { TRootState } from '../../store';
 
 const initialState: ICatalogState = {
@@ -32,6 +32,7 @@ const catalogSlice = createSlice({
       state.itemsLoading = true;
       state.itemsError = null;
       state.moreVisible = false;
+      state.items = [];
     },
     [fetchCatalogItems.fulfilled.type]: (
       state: ICatalogState,
@@ -72,29 +73,6 @@ const catalogSlice = createSlice({
       state.moreError = action.error;
       state.moreVisible = false;
     },
-    [fetchSearchCatalog.pending.type]: (
-      state: ICatalogState
-    ) => {
-      state.itemsLoading = true;
-      state.itemsError = null;
-    },
-    [fetchSearchCatalog.fulfilled.type]: (
-      state: ICatalogState,
-      action: PayloadAction<ICardItem[]>
-    ) => {
-      state.items = action.payload;
-      state.itemsLoading = false;
-      state.moreVisible = true;
-    },
-    [fetchSearchCatalog.rejected.type]: (
-      state: ICatalogState,
-      action
-    ) => {
-      state.itemsError = action.error;
-      state.items = [];
-      state.moreVisible = false;
-      state.itemsLoading = false;
-    }
   }
 });
 

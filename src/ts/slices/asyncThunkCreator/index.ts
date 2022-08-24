@@ -3,7 +3,7 @@ import { ICategory } from '../catalogSlice/interfaces';
 import { ICardItem } from '../topSalesSlice/interfaces';
 
 type TFetchProps = {
-  categoryId: number,
+  categoryId?: number,
   offset?: number,
   q?: string
 }
@@ -18,7 +18,8 @@ const createRequestItems = async (options: TFetchProps) => {
     q: `${q}`
   });
   const response = await fetch(`${process.env.REACT_APP_BASE_URL}/items?${query}`);
-  return (await response.json()) as ICardItem[];
+  const result = await response.json();
+  return result as ICardItem[];
 }
 
 export const fetchTopSales = createAsyncThunk(
@@ -45,9 +46,4 @@ export const fetchCatalogItems = createAsyncThunk(
 export const fetchMoreItems = createAsyncThunk(
   'api/items/more',
   createRequestItems
-)
-
-export const fetchSearchCatalog = createAsyncThunk(
-  'api/search',
-  createRequestItems,
 )
