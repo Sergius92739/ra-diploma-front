@@ -1,11 +1,10 @@
 import './Error.scss';
 import { SerializedError } from '@reduxjs/toolkit';
-import { selectCatalogError } from '../../slices/catalogSlice/catalogSlice';
+import { selectCatalogError, selectCatalogItems, selectCatalogSearch, selectMoreError } from '../../slices/catalogSlice/catalogSlice';
 import { selectTopSalesError } from '../../slices/topSalesSlice/topSalesSlice';
 import { selectCategoriesError, selectCategoriesSelected } from '../../slices/categorySlice/categorySlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { fetchCatalogItems, fetchCategories, fetchTopSales } from '../../slices/asyncThunkCreator';
-import React, { useEffect } from 'react';
+import { fetchCatalogItems, fetchCategories, fetchMoreItems, fetchTopSales } from '../../slices/asyncThunkCreator';
 
 type TPropsError = {
   error: SerializedError,
@@ -17,7 +16,10 @@ export function Error({ error, text }: TPropsError): JSX.Element {
   const categoriesError = useAppSelector(selectCategoriesError);
   const catalogError = useAppSelector(selectCatalogError);
   const topSalesError = useAppSelector(selectTopSalesError);
-  const selectedCategory = useAppSelector(selectCategoriesSelected)
+  const selectedCategory = useAppSelector(selectCategoriesSelected);
+  const moreError = useAppSelector(selectMoreError);
+  const items = useAppSelector(selectCatalogItems);
+  const search = useAppSelector(selectCatalogSearch);
 
   const handleClick = (e: React.MouseEvent) => {
     if (topSalesError && e.currentTarget.closest('.top-sales')) {
@@ -27,7 +29,17 @@ export function Error({ error, text }: TPropsError): JSX.Element {
       return dispatch(fetchCategories())
     }
     if (catalogError && e.currentTarget.closest('.row')) {
-      return dispatch(fetchCatalogItems(selectedCategory.id))
+      return dispatch(fetchCatalogItems({
+        categoryId: selectedCategory.id,
+        q: search
+      }))
+    }
+    if (moreError && e.currentTarget.closest('.text-center')) {
+      return dispatch(fetchMoreItems({
+        categoryId: selectedCategory.id,
+        offset: items.length,
+        q: search
+      }))
     }
   }
 

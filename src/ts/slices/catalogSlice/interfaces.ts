@@ -7,7 +7,11 @@ export interface ICategory {
 }
 
 export interface ICatalogState {
-  isLoading: boolean;
-  error: SerializedError | null;
+  itemsLoading: boolean;
+  itemsError: SerializedError | null;
   items: ICardItem[];
+  moreLoading: boolean;
+  moreVisible: boolean;
+  moreError: SerializedError | null;
+  search: string;
 }

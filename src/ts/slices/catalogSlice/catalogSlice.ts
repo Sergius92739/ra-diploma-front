@@ -1,48 +1,111 @@
-import { createSlice, PayloadAction, SerializedError } from '@reduxjs/toolkit';
-import { ICatalogState, ICategory } from './interfaces';
+import { createSlice, PayloadAction, } from '@reduxjs/toolkit';
+import { ICatalogState } from './interfaces';
 import { ICardItem } from '../topSalesSlice/interfaces';
-import { fetchCatalogItems } from '../asyncThunkCreator'
+import { fetchCatalogItems, fetchMoreItems, fetchSearchCatalog } from '../asyncThunkCreator'
 import { TRootState } from '../../store';
 
 const initialState: ICatalogState = {
-  isLoading: false,
-  error: null,
-  items: []
+  itemsLoading: false,
+  itemsError: null,
+  items: [],
+  moreLoading: false,
+  moreVisible: true,
+  moreError: null,
+  search: ''
 }
 
 const catalogSlice = createSlice({
   name: 'catalog',
   initialState,
-  reducers: {},
+  reducers: {
+    changeFied(state, action: PayloadAction<string>) {
+      state.search = action.payload;
+    },
+    resetForm(state) {
+      state.search = '';
+    }
+  },
   extraReducers: {
-    
     [fetchCatalogItems.pending.type]: (
       state: ICatalogState
     ) => {
-      state.isLoading = true;
-      state.error = null;
+      state.itemsLoading = true;
+      state.itemsError = null;
+      state.moreVisible = false;
     },
     [fetchCatalogItems.fulfilled.type]: (
       state: ICatalogState,
-      action: PayloadAction<{result: ICardItem[], id: number}>
+      action: PayloadAction<ICardItem[]>
     ) => {
-      state.items = action.payload.result;
-      state.isLoading = false;
-      state.error = null;
+      state.items = action.payload;
+      state.itemsLoading = false;
+      state.moreVisible = (state.items.length < 6 || !state.items.length) ? false : true;
     },
     [fetchCatalogItems.rejected.type]: (
       state: ICatalogState,
       action
     ) => {
       state.items = [];
-      state.isLoading = false;
-      state.error = action.error;
+      state.itemsLoading = false;
+      state.itemsError = action.error;
+      state.moreVisible = false;
+    },
+    [fetchMoreItems.pending.type]: (
+      state: ICatalogState
+    ) => {
+      state.moreLoading = true;
+      state.moreError = null;
+      state.moreVisible = false;
+    },
+    [fetchMoreItems.fulfilled.type]: (
+      state: ICatalogState,
+      action: PayloadAction<ICardItem[]>
+    ) => {
+      state.items = [...state.items, ...action.payload];
+      state.moreLoading = false;
+      state.moreVisible = (!action.payload.length || action.payload.length < 6) ? false : true;
+    },
+    [fetchMoreItems.rejected.type]: (
+      state: ICatalogState,
+      action
+    ) => {
+      state.moreError = action.error;
+      state.moreVisible = false;
+    },
+    [fetchSearchCatalog.pending.type]: (
+      state: ICatalogState
+    ) => {
+      state.itemsLoading = true;
+      state.itemsError = null;
+    },
+    [fetchSearchCatalog.fulfilled.type]: (
+      state: ICatalogState,
+      action: PayloadAction<ICardItem[]>
+    ) => {
+      state.items = action.payload;
+      state.itemsLoading = false;
+      state.moreVisible = true;
+    },
+    [fetchSearchCatalog.rejected.type]: (
+      state: ICatalogState,
+      action
+    ) => {
+      state.itemsError = action.error;
+      state.items = [];
+      state.moreVisible = false;
+      state.itemsLoading = false;
     }
   }
 });
 
-export const selectCatalogError = (state: TRootState) => state.catalogItems.error;
+export const selectCatalogError = (state: TRootState) => state.catalogItems.itemsError;
 export const selectCatalogItems = (state: TRootState) => state.catalogItems.items;
-export const selectCatalogLoading = (state: TRootState) => state.catalogItems.isLoading;
+export const selectCatalogLoading = (state: TRootState) => state.catalogItems.itemsLoading;
+export const selectMoreVisible = (state: TRootState) => state.catalogItems.moreVisible;
+export const selectMoreLoading = (state: TRootState) => state.catalogItems.moreLoading;
+export const selectMoreError = (state: TRootState) => state.catalogItems.moreError;
+export const selectCatalogSearch = (state: TRootState) => state.catalogItems.search;
+
+export const { changeFied, resetForm } = catalogSlice.actions;
 
 export const catalogItemsReducer = catalogSlice.reducer;

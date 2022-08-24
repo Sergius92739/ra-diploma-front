@@ -5,19 +5,19 @@
   justify-content: center;
   align-items: center;
   &__wrap {
-    padding: .5em 1em;
+    padding: .3em 1em;
     // border: 2px solid red;
     display: flex;
     align-items: center;
     background: #000;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     .error__mes {
       color: red;
     }
     .error__btn {
       background: inherit;
       margin-left: 2em;
-      padding: .2em 1em;
+      padding: 0 1em;
       border: 2px solid #fff;
       color: #fff;
     }

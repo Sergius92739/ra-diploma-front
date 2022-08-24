@@ -1,6 +1,6 @@
 import './TopSales.scss';
 import { Preloader } from '../Preloader/Preloader';
-import { CardList } from '../CardList/CardList';
+import { CardList } from '../Catalog/CardList/CardList';
 import { Card } from '../Card/Card';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
