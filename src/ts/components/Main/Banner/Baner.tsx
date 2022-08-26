@@ -4,8 +4,8 @@ import './Banner.scss';
 export function Banner(): JSX.Element {
   return (
     <div className="banner">
-      <img src={banner} className="img-fluid" alt="К весне готовы!"/>
-        <h2 className="banner-header">К весне готовы!</h2>
+      <img src={banner} className="img-fluid" alt="К весне готовы!" />
+      <h2 className="banner-header">К весне готовы!</h2>
     </div>
   )
 }

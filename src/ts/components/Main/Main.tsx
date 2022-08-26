@@ -1,9 +1,9 @@
-import React, {ReactNode} from 'react';
+import React, { ReactNode } from 'react';
 import { Banner } from './Banner/Baner';
 
-type Props = {children: ReactNode}
+type Props = { children: ReactNode }
 
-export function Main({children}: Props): JSX.Element {
+export function Main({ children }: Props): JSX.Element {
   return (
     <main className="container">
       <div className="row">

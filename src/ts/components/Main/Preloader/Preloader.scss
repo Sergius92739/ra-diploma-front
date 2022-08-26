@@ -1,5 +1,5 @@
 .preloader {
-  margin: 17px auto 41.6px;  
+  margin: 17px auto 41.6px;
   position: relative;
   width: 30px;
   height: 30px;
@@ -14,7 +14,7 @@
   animation: spin 2s ease infinite;
 }
 .preloader :first-child {
-  background: #19A68C;
+  background: #19a68c;
   animation-delay: -1.5s;
 }
 .preloader :nth-child(2) {

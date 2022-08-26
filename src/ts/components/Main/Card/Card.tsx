@@ -14,7 +14,7 @@ type TProps = {
 }
 
 export function Card(props: TProps): JSX.Element {
-  const {classname, id, title, price, images} = props;
+  const { classname, id, title, price, images } = props;
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = error_img;
@@ -23,11 +23,16 @@ export function Card(props: TProps): JSX.Element {
   return (
     <div className={`col-4 ${classname}`}>
       <div className="card">
-        <img src={images[0]} className="card-img-top img-fluid" onError={handleError} alt={title} />
+        <img
+          src={images[0]}
+          className="card-img-top img-fluid"
+          onError={handleError}
+          alt={title}
+        />
         <div className="card-body">
           <p className="card-text">{title}</p>
           <p className="card-text">{price}</p>
-          <Link to={`${Paths.CATALOG}:${id}`} className="btn btn-outline-primary">Заказать</Link>
+          <Link to={`${Paths.CATALOG}${id}`} className="btn btn-outline-primary">Заказать</Link>
         </div>
       </div>
     </div>

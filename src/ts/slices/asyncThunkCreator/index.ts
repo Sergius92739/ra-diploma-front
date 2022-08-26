@@ -1,11 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ICategory } from '../catalogSlice/interfaces';
+import { IProduct } from '../productPageSlice/interfaces';
 import { ICardItem } from '../topSalesSlice/interfaces';
 
 type TFetchProps = {
   categoryId?: number,
   offset?: number,
-  q?: string
+  q?: string;
 }
 
 const createRequestItems = async (options: TFetchProps) => {
@@ -17,15 +18,16 @@ const createRequestItems = async (options: TFetchProps) => {
     offset: `${offset}`,
     q: `${q}`
   });
-  const response = await fetch(`${process.env.REACT_APP_BASE_URL}/items?${query}`);
-  const result = await response.json();
-  return result as ICardItem[];
+  const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/items?${query}`)
+  const response = await fetch(url);
+  return (await response.json()) as ICardItem[];
 }
 
 export const fetchTopSales = createAsyncThunk(
   'api/top-sales',
   async () => {
-    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/top-sales`);
+    const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/top-sales`)
+    const response = await fetch(url);
     return (await response.json()) as ICardItem[];
   }
 )
@@ -33,7 +35,8 @@ export const fetchTopSales = createAsyncThunk(
 export const fetchCategories = createAsyncThunk(
   'api/categories',
   async () => {
-    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/categories`);
+    const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/categories`)
+    const response = await fetch(url);
     return (await response.json()) as ICategory[];
   }
 )
@@ -46,4 +49,14 @@ export const fetchCatalogItems = createAsyncThunk(
 export const fetchMoreItems = createAsyncThunk(
   'api/items/more',
   createRequestItems
+);
+
+export const fetchProduct = createAsyncThunk(
+  'api/items/:id',
+  async (id: string) => {
+    const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/items/${id}`)
+    const response = await fetch(url);
+    const result = await response.json();
+    return result as IProduct;
+  }
 )

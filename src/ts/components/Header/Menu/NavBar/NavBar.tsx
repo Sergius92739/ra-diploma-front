@@ -1,6 +1,5 @@
-import {Link} from 'react-router-dom';
-import {Paths} from '../../../../Paths';
-import './NavBar.scss';
+import { Link } from 'react-router-dom';
+import { Paths } from '../../../../Paths';
 
 export function NavBar(): JSX.Element {
   return (

@@ -4,7 +4,9 @@ import { selectCatalogError, selectCatalogItems, selectCatalogSearch, selectMore
 import { selectTopSalesError } from '../../slices/topSalesSlice/topSalesSlice';
 import { selectCategoriesError, selectCategoriesSelected } from '../../slices/categorySlice/categorySlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { fetchCatalogItems, fetchCategories, fetchMoreItems, fetchTopSales } from '../../slices/asyncThunkCreator';
+import { fetchCatalogItems, fetchCategories, fetchMoreItems, fetchProduct, fetchTopSales } from '../../slices/asyncThunkCreator';
+import { selectProductError } from '../../slices/productPageSlice/productPageSlice';
+import { useParams } from 'react-router-dom';
 
 type TPropsError = {
   error: SerializedError,
@@ -18,8 +20,10 @@ export function Error({ error, text }: TPropsError): JSX.Element {
   const topSalesError = useAppSelector(selectTopSalesError);
   const selectedCategory = useAppSelector(selectCategoriesSelected);
   const moreError = useAppSelector(selectMoreError);
+  const productError = useAppSelector(selectProductError);
   const items = useAppSelector(selectCatalogItems);
   const search = useAppSelector(selectCatalogSearch);
+  const { id } = useParams() as any;
 
   const handleClick = (e: React.MouseEvent) => {
     if (topSalesError && e.currentTarget.closest('.top-sales')) {
@@ -40,6 +44,9 @@ export function Error({ error, text }: TPropsError): JSX.Element {
         offset: items.length,
         q: search
       }))
+    }
+    if (productError && e.currentTarget.closest('.catalog-item')) {
+      dispatch(fetchProduct(id))
     }
   }
 

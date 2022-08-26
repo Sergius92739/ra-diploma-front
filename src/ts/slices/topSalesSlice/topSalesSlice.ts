@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, SerializedError } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TRootState } from '../../store';
 import { ICardItem, ITopSalesState } from './interfaces';
 import { fetchTopSales } from '../asyncThunkCreator'
@@ -43,5 +43,4 @@ const topSalesSlice = createSlice({
 export const selectTopSalesError = (state: TRootState) => state.topSales.error;
 export const selectTopSales = (state: TRootState) => state.topSales.topSales;
 export const selectTopSalesLoading = (state: TRootState) => state.topSales.isLoading;
-
 export const topSalesReducer = topSalesSlice.reducer;

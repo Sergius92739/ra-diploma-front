@@ -1,3 +1,5 @@
+@import "../../../../styles/vars.scss";
+
 .catalog {
   min-height: 600px;
 }
@@ -14,6 +16,13 @@
 .catalog-item-size {
   display: inline-block;
   padding: 0 10px;
+  cursor: pointer;
+  margin-left: 0.5em;
+  color: $primary-color2;
+  border-bottom: 2px dashed transparent;
+  &:hover {
+    border-bottom: 2px dashed $primary-color2;
+  }
 }
 
 .catalog-item-size.selected {
@@ -27,11 +36,12 @@
   width: 100%;
   height: 38px;
   padding: 0 20px;
-  background: #FFFFFF;
-  box-shadow: 0px 0px 10px #D4E4E6;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px #d4e4e6;
   border-radius: 50px;
   margin-bottom: 2em;
 }
+
 .catalog-search-form .form-control {
   width: 100%;
   height: 100%;

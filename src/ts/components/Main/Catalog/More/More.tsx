@@ -26,10 +26,26 @@ export function More(): JSX.Element {
 
   return (
     <div className="text-center">
-      {moreError && <Error error={moreError} text={'Ошибка при попытке загрузить ещё'}/>}
-      {moreLoading && !moreError && <Preloader />}
-      {items.length === 0 && !catalogItemsError && !itemsLoading && !moreLoading && <div style={{fontSize: '1.2rem'}}>Ничего не нашлось...</div>}
-      {visible && items.length >= 6 && <button onClick={handleClick} className="btn btn-outline-primary">Загрузить ещё</button>}
+      {
+        moreError && <Error error={moreError} text={'Ошибка при попытке загрузить ещё'} />
+      }
+      {
+        moreLoading && !moreError && <Preloader />
+      }
+      {
+        items.length === 0 && !catalogItemsError && !itemsLoading && !moreLoading &&
+        <div style={{ fontSize: '1.2rem' }}>
+          Ничего не нашлось...
+        </div>
+      }
+      {
+        visible && items.length >= 6 &&
+        <button
+          onClick={handleClick}
+          className="btn btn-outline-primary">
+          Загрузить ещё
+        </button>
+      }
     </div>
   )
 }

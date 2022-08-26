@@ -14,7 +14,7 @@ export function CatalogSearchHeader(): JSX.Element {
     inputEl.current.focus();
   }, [inputEl])
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) =>  {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(fetchCatalogItems({
       categoryId: selected.id,
@@ -23,15 +23,25 @@ export function CatalogSearchHeader(): JSX.Element {
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {value} = e.target;
+    const { value } = e.target;
     dispatch(changeFied(value));
   }
 
   return (
     <>
-      {<form onSubmit={handleSubmit} className="catalog-search-form form-inline">
-        <input ref={inputEl} onChange={handleChange} value={search} className="form-control" placeholder="Поиск" />
-      </form>}
+      {
+        <form
+          onSubmit={handleSubmit}
+          className="catalog-search-form form-inline">
+          <input
+            ref={inputEl}
+            onChange={handleChange}
+            value={search}
+            className="form-control"
+            placeholder="Поиск"
+          />
+        </form>
+      }
     </>
   )
 }

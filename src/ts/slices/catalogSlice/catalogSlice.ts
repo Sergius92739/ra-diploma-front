@@ -46,9 +46,9 @@ const catalogSlice = createSlice({
       state: ICatalogState,
       action
     ) => {
+      state.itemsError = action.error;
       state.items = [];
       state.itemsLoading = false;
-      state.itemsError = action.error;
       state.moreVisible = false;
     },
     [fetchMoreItems.pending.type]: (
@@ -83,7 +83,5 @@ export const selectMoreVisible = (state: TRootState) => state.catalogItems.moreV
 export const selectMoreLoading = (state: TRootState) => state.catalogItems.moreLoading;
 export const selectMoreError = (state: TRootState) => state.catalogItems.moreError;
 export const selectCatalogSearch = (state: TRootState) => state.catalogItems.search;
-
 export const { changeFied, resetForm } = catalogSlice.actions;
-
 export const catalogItemsReducer = catalogSlice.reducer;

@@ -1,10 +1,13 @@
 import './TopSales.scss';
 import { Preloader } from '../Preloader/Preloader';
-import { CardList } from '../Catalog/CardList/CardList';
 import { Card } from '../Card/Card';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { selectTopSalesError, selectTopSalesLoading, selectTopSales } from '../../../slices/topSalesSlice/topSalesSlice';
+import {
+  selectTopSalesError,
+  selectTopSalesLoading,
+  selectTopSales
+} from '../../../slices/topSalesSlice/topSalesSlice';
 import { fetchTopSales } from '../../../slices/asyncThunkCreator';
 import { Error } from '../../Error/Error';
 
@@ -20,25 +23,33 @@ export function TopSales(): JSX.Element {
 
   return (
     <>
-      {loading && <section className='top-sales'>
-        <h2 className="text-center">Хиты продаж!</h2>
-        <Preloader />
-      </section>}
-      {topSalesError && <section className='top-sales'>
-        <h2 className="text-center">Хиты продаж!</h2>
-        <Error error={topSalesError} text={'Ошибка запроса хитов продаж'} />
-      </section>}
-      {topSales.length
-        ? <section className="top-sales">
+      {
+        loading && <section className='top-sales'>
           <h2 className="text-center">Хиты продаж!</h2>
-          {loading && <Preloader />}
-          <div className="row">
-            {
-              topSales.map((el) => <Card key={el.id} {...el} classname='' />)
-            }
-          </div>
+          <Preloader />
         </section>
-        : null}
+      }
+      {
+        topSalesError && <section className='top-sales'>
+          <h2 className="text-center">Хиты продаж!</h2>
+          <Error error={topSalesError} text={'Ошибка запроса хитов продаж'} />
+        </section>
+      }
+      {
+        topSales.length
+          ? <section className="top-sales">
+            <h2 className="text-center">Хиты продаж!</h2>
+            {
+              loading && <Preloader />
+            }
+            <div className="row">
+              {
+                topSales.map((el) => <Card key={el.id} {...el} classname='' />)
+              }
+            </div>
+          </section>
+          : null
+      }
     </>
   )
 }

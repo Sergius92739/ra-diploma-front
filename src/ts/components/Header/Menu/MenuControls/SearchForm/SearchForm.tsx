@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../../hooks/hooks";
 import { Paths } from "../../../../../Paths";
 import { changeFied, selectCatalogSearch } from "../../../../../slices/catalogSlice/catalogSlice";
-import { selectClickedSearch } from "../../../../../slices/menuIconsSlice/menuIconsSlice";
+import { selectClickedSearch } from "../../../../../slices/iconSearchSlice/iconSearchSlice";
 
 export function SearchForm(): JSX.Element {
   const clicked = useAppSelector(selectClickedSearch);
@@ -27,10 +27,20 @@ export function SearchForm(): JSX.Element {
   }
 
   return (
-    <form onSubmit={handleSubmit} data-id="search-form" className={clicked
-      ? "header-controls-search-form form-inline"
-      : "header-controls-search-form form-inline invisible"}>
-      <input ref={inputRef} onChange={handleChange} value={search} className="form-control" placeholder="Поиск" />
+    <form
+      onSubmit={handleSubmit}
+      data-id="search-form"
+      className={
+        clicked
+          ? "header-controls-search-form form-inline"
+          : "header-controls-search-form form-inline invisible"}>
+      <input
+        ref={inputRef}
+        onChange={handleChange}
+        value={search}
+        className="form-control"
+        placeholder="Поиск"
+      />
     </form>
   )
 }

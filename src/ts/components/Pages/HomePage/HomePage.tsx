@@ -7,7 +7,7 @@ import { fetchCatalogItems } from "../../../slices/asyncThunkCreator";
 
 export function HomePage(): JSX.Element {
   const dispatch = useAppDispatch();
-  
+
   useEffect(() => {
     dispatch(resetForm());
     dispatch(fetchCatalogItems({}))

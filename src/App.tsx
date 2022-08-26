@@ -7,6 +7,7 @@ import { ContactsInfo } from './ts/components/Pages/ContactsInfo/ContactsInfo';
 import { CatalogSearch } from './ts/components/Pages/CatalogSearch/CatalogSearch';
 import { Error404 } from './ts/components/Pages/Error404/Error404';
 import { CatalogItem } from './ts/components/Pages/CatalogItem/CatalogItem';
+import { Cart } from './ts/components/Main/Cart/Cart';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path={Paths.CONTACTS} element={<ContactsInfo />} />
         <Route path={Paths.CATALOG} element={<CatalogSearch />} />
         <Route path={`${Paths.CATALOG}:id`} element={<CatalogItem />} />
+        <Route path={Paths.CART} element={<Cart />} />
         <Route path='*' element={<Error404 />} />
       </Route>
     </Routes>

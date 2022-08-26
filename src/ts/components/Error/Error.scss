@@ -5,8 +5,7 @@
   justify-content: center;
   align-items: center;
   &__wrap {
-    padding: .3em 1em;
-    // border: 2px solid red;
+    padding: 0.3em 1em;
     display: flex;
     align-items: center;
     background: #000;
@@ -23,45 +22,3 @@
     }
   }
 }
-
-/* .error {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: black;
-  opacity: 0.9;
-  z-index: 10;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 5px solid red;
-  padding: 1em;
-  .error__wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1em;
-    .error__mes {
-      font-size: 6rem;
-      color: red;
-      animation: text 2s ease-in-out infinite;
-      @keyframes text {
-        50% {
-          color: #000;
-        }
-      }
-    }
-    .error__btn {
-      font-size: 3rem;
-      padding: .25em .5em;
-      border: 5px solid #fff;
-      background: #000;
-      color: #fff;
-      opacity: 1;
-    }
-  }
-}
- */
