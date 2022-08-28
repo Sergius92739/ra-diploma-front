@@ -1,26 +1,20 @@
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks"
-import { removeItem, selectCartItems, selectCartTotal } from "../../../slices/cartSlice/cartSlice"
-import { useEffect } from 'react';
+import { selectCartItems, updateCart, removeProductFromCart } from "../../../slices/cartSlice/cartSlice"
 import { Link } from "react-router-dom";
 import { Paths } from "../../../Paths";
 import { nanoid } from "nanoid";
-import { ICartItem } from "../../../slices/cartSlice/interfaces";
+import { ICartItem, ICartState } from "../../../slices/cartSlice/interfaces";
 
 export function Cart(): JSX.Element {
   const dispatch = useAppDispatch();
-  const cartItems = useAppSelector(selectCartItems);
-  const cartTotal = useAppSelector(selectCartTotal);
-  const storageData = JSON.parse(localStorage.getItem('cart') as string);
-  const items = storageData.items || cartItems;
-  const total = storageData.total || cartTotal;
+  const storageData = JSON.parse(localStorage.getItem('cart') as string) as ICartState;
+  const stateItems = useAppSelector(selectCartItems);
+  const items = storageData.items || stateItems;
+  const total = items.reduce((prev, cur) => prev + cur.total, 0);
 
-  useEffect(() => {
-    console.log({ cartItems, cartTotal })
-  }, [cartItems, cartTotal])
-
-
-  const onRemoveBtnClick = (id: number) => {
-    dispatch(removeItem(id));
+  const onRemoveBtnClick = (index: number) => {
+    dispatch(removeProductFromCart(index));
+    dispatch(updateCart());
   }
 
   return (
@@ -53,7 +47,7 @@ export function Cart(): JSX.Element {
                       <td>{el.total} руб.</td>
                       <td>
                         <button
-                          onClick={() => onRemoveBtnClick(el.id)}
+                          onClick={() => onRemoveBtnClick(idx)}
                           className="btn btn-outline-danger btn-sm">
                           Удалить
                         </button>

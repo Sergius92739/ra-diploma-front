@@ -10,6 +10,7 @@ import {
 } from '../../../slices/topSalesSlice/topSalesSlice';
 import { fetchTopSales } from '../../../slices/asyncThunkCreator';
 import { Error } from '../../Error/Error';
+import { ICardItem } from '../../../slices/topSalesSlice/interfaces';
 
 export function TopSales(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -44,7 +45,7 @@ export function TopSales(): JSX.Element {
             }
             <div className="row">
               {
-                topSales.map((el) => <Card key={el.id} {...el} classname='' />)
+                topSales.map((el:ICardItem) => <Card key={el.id} {...el} classname='' />)
               }
             </div>
           </section>

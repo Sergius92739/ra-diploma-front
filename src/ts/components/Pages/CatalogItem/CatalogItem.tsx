@@ -5,6 +5,11 @@ import { nanoid } from 'nanoid';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { fetchProduct } from '../../../slices/asyncThunkCreator';
 import { increment, decrement, setTheSize, resetSize } from '../../../slices/productPageSlice/productPageSlice';
+import { Error } from '../../Error/Error';
+import { Preloader } from '../../Main/Preloader/Preloader';
+import { Paths } from '../../../Paths';
+import { ICartItem } from '../../../slices/cartSlice/interfaces';
+import { addProductToCart, updateCart } from '../../../slices/cartSlice/cartSlice';
 import {
   selectAvalible,
   selectProduct,
@@ -13,12 +18,6 @@ import {
   selectQuantity,
   selectSelectedSize
 } from '../../../slices/productPageSlice/productPageSlice';
-import { Error } from '../../Error/Error';
-import { Preloader } from '../../Main/Preloader/Preloader';
-import { Paths } from '../../../Paths';
-import { addItem } from '../../../slices/cartSlice/cartSlice';
-import { ICartItem } from '../../../slices/cartSlice/interfaces';
-
 
 export function CatalogItem(): JSX.Element {
   const { id } = useParams() as any;
@@ -56,7 +55,8 @@ export function CatalogItem(): JSX.Element {
       size: selectedSize,
       total: (item?.price as number) * quantity
     }
-    dispatch(addItem(product));
+    dispatch(addProductToCart(product));
+    dispatch(updateCart());
     navigate(Paths.CART)
   }
 

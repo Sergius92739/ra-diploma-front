@@ -1,6 +1,6 @@
 import { SerializedError } from "@reduxjs/toolkit";
 
-type TSizes = {
+export type TSizes = {
   size: string,
   avalible: boolean,
 }

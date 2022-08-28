@@ -19,6 +19,7 @@ import {
 } from '../../../slices/catalogSlice/catalogSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { fetchCatalogItems, fetchCategories } from '../../../slices/asyncThunkCreator'
+import { ICardItem } from '../../../slices/topSalesSlice/interfaces';
 
 export function Catalog({ children }: { children: ReactNode }): JSX.Element {
   const items = useAppSelector(selectCatalogItems);
@@ -68,7 +69,7 @@ export function Catalog({ children }: { children: ReactNode }): JSX.Element {
         {
           (!catalogItemsError && items.length !== 0)
           &&
-          items.map((el) => <Card key={nanoid()} {...el} classname='catalog-item-card' />)
+          items.map((el: ICardItem) => <Card key={nanoid()} {...el} classname='catalog-item-card' />)
         }
       </CardList>
       {
