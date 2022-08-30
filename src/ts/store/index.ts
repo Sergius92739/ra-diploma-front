@@ -5,6 +5,7 @@ import { categoryReducer } from '../slices/categorySlice/categorySlice'
 import { iconSearchReducer } from '../slices/iconSearchSlice/iconSearchSlice';
 import { productPageReducer } from '../slices/productPageSlice/productPageSlice';
 import { cartReducer } from '../slices/cartSlice/cartSlice';
+import { orderReducer } from '../slices/orderSlice/orderSlice';
 
 export const storageMiddleware: Middleware = (store) => (next) => (action) => {
   if (action.type === 'cart/updateCart') {
@@ -21,7 +22,8 @@ export const store = configureStore({
     categories: categoryReducer,
     iconSearch: iconSearchReducer,
     product: productPageReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    order: orderReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(storageMiddleware)
 });

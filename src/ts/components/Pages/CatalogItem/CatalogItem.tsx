@@ -68,7 +68,12 @@ export function CatalogItem(): JSX.Element {
           productLoading && <Preloader />
         }
         {
-          productError && <Error error={productError} text='Ошибка запроса информации о товаре' />
+          productError && <Error
+            error={productError}
+            text='Ошибка запроса информации о товаре'
+            clossest='.catalog-item'
+            callback={() => fetchProduct(id)}
+          />
         }
         <div className="row">
           <div className="col-5">

@@ -33,7 +33,12 @@ export function TopSales(): JSX.Element {
       {
         topSalesError && <section className='top-sales'>
           <h2 className="text-center">Хиты продаж!</h2>
-          <Error error={topSalesError} text={'Ошибка запроса хитов продаж'} />
+          <Error
+            error={topSalesError}
+            text={'Ошибка запроса хитов продаж'}
+            clossest='.top-sales'
+            callback={fetchTopSales}
+          />
         </section>
       }
       {
@@ -45,7 +50,7 @@ export function TopSales(): JSX.Element {
             }
             <div className="row">
               {
-                topSales.map((el:ICardItem) => <Card key={el.id} {...el} classname='' />)
+                topSales.map((el: ICardItem) => <Card key={el.id} {...el} classname='' />)
               }
             </div>
           </section>

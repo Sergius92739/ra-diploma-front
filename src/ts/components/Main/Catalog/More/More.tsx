@@ -27,7 +27,16 @@ export function More(): JSX.Element {
   return (
     <div className="text-center">
       {
-        moreError && <Error error={moreError} text={'Ошибка при попытке загрузить ещё'} />
+        moreError && <Error
+          error={moreError}
+          text={'Ошибка при попытке загрузить ещё'}
+          clossest='.text-center'
+          callback={() => fetchMoreItems({
+            categoryId: selectedCategory.id,
+            offset: items.length,
+            q: search
+          })}
+        />
       }
       {
         moreLoading && !moreError && <Preloader />

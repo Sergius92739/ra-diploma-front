@@ -20,6 +20,9 @@ const createRequestItems = async (options: TFetchProps) => {
   });
   const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/items?${query}`)
   const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
   return (await response.json()) as ICardItem[];
 }
 
@@ -28,6 +31,9 @@ export const fetchTopSales = createAsyncThunk(
   async () => {
     const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/top-sales`)
     const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
     return (await response.json()) as ICardItem[];
   }
 )
@@ -37,6 +43,9 @@ export const fetchCategories = createAsyncThunk(
   async () => {
     const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/categories`)
     const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
     return (await response.json()) as ICategory[];
   }
 )
@@ -56,7 +65,35 @@ export const fetchProduct = createAsyncThunk(
   async (id: string) => {
     const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/items/${id}`)
     const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
     const result = await response.json();
     return result as IProduct;
+  }
+)
+
+export type TBody = {
+  owner: {
+    phone: string,
+    address: string
+  },
+  items: { id: number, price: number, count: number }[]
+}
+
+export const fetchOrder = createAsyncThunk(
+  'api/order',
+  async (body: TBody, thunkAPI) => {
+    const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/order`);
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    })
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    localStorage.clear();
+    return response.status;
   }
 )
