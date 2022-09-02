@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/bfppcc579jecte8m/branch/master?svg=true)](https://ci.appveyor.com/project/Sergius92739/ra-12-3-redux-toolkit-main-details-front/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/f5wov44wmc9mw8to/branch/master?svg=true)](https://ci.appveyor.com/project/Sergius92739/ra-diploma-front/branch/master)
 
 ### Deployment: <a href="https://sergius92739.github.io/ra-diploma-front/">Github Pages</a>
 
