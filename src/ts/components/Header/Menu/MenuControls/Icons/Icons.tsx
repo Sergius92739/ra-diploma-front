@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../../hooks/hooks"
 import { Paths } from "../../../../../Paths";
 import { selectCartItems } from "../../../../../slices/cartSlice/cartSlice";
-import { ICartState } from "../../../../../slices/cartSlice/interfaces";
 import { selectCatalogSearch } from "../../../../../slices/catalogSlice/catalogSlice";
 import { selectClickedSearch, setSearchActive, setSearchNotActive } from "../../../../../slices/iconSearchSlice/iconSearchSlice";
 
@@ -13,7 +12,7 @@ export function Icons(): JSX.Element {
   const clickedSearch = useAppSelector(selectClickedSearch);
   const navigate = useNavigate();
   const cartItems = useAppSelector(selectCartItems);
-  const storageData = JSON.parse(localStorage.getItem('cart') as string) as ICartState;
+  const storageData = JSON.parse(localStorage.getItem('cart') as string);
   const quantity = storageData ? storageData.items.length : cartItems.length;
 
   const onSearchClick = (e: React.MouseEvent<HTMLDivElement>) => {
