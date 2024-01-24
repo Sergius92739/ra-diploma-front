@@ -10,6 +10,6 @@ export interface ICardItem {
 
 export interface ITopSalesState {
   isLoading: boolean;
-  topSales: ICardItem[];
+  topSales: ICardItem[] | [];
   error: SerializedError | null;
 }

@@ -20,7 +20,7 @@ export function TopSales(): JSX.Element {
 
   useEffect(() => {
     dispatch(fetchTopSales());
-  }, [])
+  }, [dispatch])
 
   return (
     <>

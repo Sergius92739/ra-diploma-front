@@ -31,7 +31,7 @@ export function Card(props: TProps): JSX.Element {
         />
         <div className="card-body">
           <p className="card-text">{title}</p>
-          <p className="card-text">{price}</p>
+          <p className="card-text">{price} руб.</p>
           <Link to={`${Paths.CATALOG}${id}`} className="btn btn-outline-primary">Заказать</Link>
         </div>
       </div>
