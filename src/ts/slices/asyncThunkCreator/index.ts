@@ -52,6 +52,9 @@ type TFetchProps = {
   q?: string;
 }
 
+let controller: AbortController;
+let signal: AbortSignal;
+
 const createRequestItems = async (options: TFetchProps) => {
   const getRetryFetch = async (retryCount = 3): Promise<ICardItem[]> => {
     if (retryCount) {
@@ -64,14 +67,25 @@ const createRequestItems = async (options: TFetchProps) => {
           offset: `${offset}`,
           q: `${q}`
         });
-        const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/items?${query}`)
-        const response = await fetch(url);
+        if (controller) {
+          controller.abort();
+        }
+        controller = new AbortController();
+        signal = controller.signal;
+        const url = new URL(`${process.env.REACT_APP_BASE_URL}/api/items?${query}`);
+        const response = await fetch(url, { signal });
         if (!response.ok) {
           return getRetryFetch(retryCount - 1);
         }
         return (await response.json()) as ICardItem[];
       } catch (error) {
-        return getRetryFetch(retryCount - 1);
+        if (error instanceof Error) {
+          if (error.name === 'AbortError') {
+            console.warn('Запрос был отменён.');
+            return [];
+          }
+          return getRetryFetch(retryCount - 1);
+        }
       }
     }
     throw Error('Превышен лимит попыток запроса');
@@ -114,7 +128,7 @@ export const fetchProduct = createAsyncThunk(
   getFetchProduct
 )
 
-const getFetchOrder = async (body: TBody)  => {
+const getFetchOrder = async (body: TBody) => {
   const getRetryFetch = async (retryCount = 3): Promise<number> => {
     if (retryCount) {
       try {
