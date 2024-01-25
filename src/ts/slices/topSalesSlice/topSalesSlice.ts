@@ -26,7 +26,7 @@ const topSalesSlice = createSlice({
       action: PayloadAction<ICardItem[]>
     ) => {
       state.isLoading = false;
-      state.topSales = action.payload;
+      state.topSales = [...action.payload];
       state.error = null;
     },
     [fetchTopSales.rejected.type]: (

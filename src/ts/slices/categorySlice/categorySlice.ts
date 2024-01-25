@@ -24,6 +24,7 @@ const categorySlice = createSlice({
     ) => {
       state.isLoading = true;
       state.error = null;
+      state.categories = [];
     },
     [fetchCategories.fulfilled.type]: (
       state: ICategoryState,
