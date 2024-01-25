@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/ra-diploma-front/static/css/main.c0b3470d.css",
+    "main.js": "/ra-diploma-front/static/js/main.66b2e651.js",
+    "static/js/787.1bf53a29.chunk.js": "/ra-diploma-front/static/js/787.1bf53a29.chunk.js",
+    "static/media/Roboto-Bold.svg": "/ra-diploma-front/static/media/Roboto-Bold.541cb3422a94c6b7e915.svg",
+    "static/media/Roboto-Medium.svg": "/ra-diploma-front/static/media/Roboto-Medium.8c796214ef31c8ed26f7.svg",
+    "static/media/Roboto-Black.svg": "/ra-diploma-front/static/media/Roboto-Black.249fc560a15897555e15.svg",
+    "static/media/Roboto-Regular.svg": "/ra-diploma-front/static/media/Roboto-Regular.527dfaa48fd1b09fffcf.svg",
+    "static/media/banner.jpg": "/ra-diploma-front/static/media/banner.5fd2c60d58a8686daee0.jpg",
+    "static/media/Roboto-Medium.eot": "/ra-diploma-front/static/media/Roboto-Medium.95a5d9131d3469c3ce5e.eot",
+    "static/media/Roboto-Medium.ttf": "/ra-diploma-front/static/media/Roboto-Medium.7429a63c09f79a1760b0.ttf",
+    "static/media/Roboto-Regular.eot": "/ra-diploma-front/static/media/Roboto-Regular.ffdb6afaa75355e57a82.eot",
+    "static/media/Roboto-Black.eot": "/ra-diploma-front/static/media/Roboto-Black.70bc7699658302342e32.eot",
+    "static/media/Roboto-Regular.ttf": "/ra-diploma-front/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
+    "static/media/Roboto-Black.ttf": "/ra-diploma-front/static/media/Roboto-Black.2a4285847db4a9acb97f.ttf",
+    "static/media/Roboto-Bold.eot": "/ra-diploma-front/static/media/Roboto-Bold.57cefa6ff8c0ca7a891f.eot",
+    "static/media/Roboto-Bold.ttf": "/ra-diploma-front/static/media/Roboto-Bold.75371f53f06181df75f1.ttf",
+    "static/media/Roboto-Medium.woff": "/ra-diploma-front/static/media/Roboto-Medium.d7b36842eec814ca96c2.woff",
+    "static/media/Roboto-Bold.woff": "/ra-diploma-front/static/media/Roboto-Bold.ad72f24fecee81055b62.woff",
+    "static/media/Roboto-Regular.woff": "/ra-diploma-front/static/media/Roboto-Regular.5de7b2aa0c98ccc93fc6.woff",
+    "static/media/Roboto-Black.woff": "/ra-diploma-front/static/media/Roboto-Black.8864e7ac032ef057bbf8.woff",
+    "static/media/footer-sprite.png": "/ra-diploma-front/static/media/footer-sprite.b3d5697aeb76ce9f8002.png",
+    "index.html": "/ra-diploma-front/index.html",
+    "main.c0b3470d.css.map": "/ra-diploma-front/static/css/main.c0b3470d.css.map",
+    "main.66b2e651.js.map": "/ra-diploma-front/static/js/main.66b2e651.js.map",
+    "787.1bf53a29.chunk.js.map": "/ra-diploma-front/static/js/787.1bf53a29.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c0b3470d.css",
+    "static/js/main.66b2e651.js"
+  ]
+}
